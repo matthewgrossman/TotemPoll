@@ -40,7 +40,7 @@
             android:layout_marginLeft = "@dimen/border_size"
             android:layout_marginRight = "@dimen/border_size"
 
-            android:background="@color/cr_question" >
+            android:background="@color/cr_question_colour" >
 
         <TextView
                 android:id="@+id/cr_question"
@@ -48,14 +48,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
 
-                android:ems = "@dimen/cr_question"
+                android:textSize = "@dimen/cr_question_size"
                 />
     </ScrollView>
 
 
     <!-- List of Answers -->
     <TextView
-            android:id = "cr_answer_instru"
+            android:id = "@+id/cr_answer_instru"
 
             android:text = "@string/cr_answer_instru"
             android:textSize = "@dimen/cr_instruction"
