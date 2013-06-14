@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -70,10 +71,15 @@ public class QuestionSelectionActivity extends Activity
     public void openQuestion( View view )
     {
         int selected = _listView.getCheckedItemPosition();
-        Intent intent = new Intent( this , ClientResponseActivity.class ) ;
-        intent.putExtra( "question_object" , _questions.get(selected) ) ;
 
-        startActivity( intent ) ;
+        if (selected > -1) {
+            Intent intent = new Intent( this , ClientResponseActivity.class ) ;
+            intent.putExtra( "question_object" , _questions.get(selected) ) ;
+
+            startActivity( intent ) ;
+        } else {
+            Toast.makeText(this, "Please select a question.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

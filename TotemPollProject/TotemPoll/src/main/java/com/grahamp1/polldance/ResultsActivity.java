@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +63,9 @@ public class ResultsActivity extends Activity {
     }
 
     public void setQuestion(Question question) {
-        ((TextView) findViewById(R.id.results_question_text))
-                .setText(Html.fromHtml(question.getText()));
+        TextView questionView = (TextView) findViewById(R.id.results_question_text);
+        questionView.setText(Html.fromHtml(question.getText()));
+        questionView.setMovementMethod(LinkMovementMethod.getInstance());
 
         List<Answer> answers = question.getAnswers();
 
@@ -93,13 +95,15 @@ public class ResultsActivity extends Activity {
         _adapter.notifyDataSetChanged();
     }
 
-    public void goToHostHome(View view) {
-        startActivity(new Intent(this, HostHomeActivity.class));
+    public void goToSplash(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
-    public void addRandomVote(View view) {
-        addVote((int)(Math.random()*_listItems.size()));
-        _pieChart.postInvalidate();
-    }
+//    public void addRandomVote(View view) {
+//        addVote((int)(Math.random()*_listItems.size()));
+//        _pieChart.postInvalidate();
+//    }
 
 }

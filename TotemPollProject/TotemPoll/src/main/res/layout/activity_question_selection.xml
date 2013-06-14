@@ -4,7 +4,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#000000">
 
 
     <!-- Top: Asking users to select a question -->
@@ -21,7 +22,7 @@
             android:layout_marginBottom = "@dimen/border_size"
             android:layout_marginLeft = "@dimen/border_size"
             android:layout_marginRight = "@dimen/border_size"
-            />
+            android:textColor="#FFFFFF"/>
 
 
     <!-- Middle: ListView of questions -->
@@ -34,22 +35,22 @@
             android:layout_width = "match_parent"
             android:layout_height = "0dp"
 
-            android:background = "@drawable/list_item_background_selector"
+            android:background = "#a2a2a2"
             />
 
     <!-- Bottom: Select Button -->
     <Button
             android:id = "@+id/qs_select_button"
 
-            android:text = "@string/select"
+            android:background="@drawable/select"
             android:textSize = "@dimen/button_text_size"
 
             android:layout_gravity = "center"
 
-            android:layout_height = "wrap_content"
-            android:layout_width = "wrap_content"
+            android:layout_height = "40dp"
+            android:layout_width = "100dp"
 
-            android:layout_marginBottom = "@dimen/border_size"
+            android:layout_marginTop = "@dimen/border_size"
 
             android:onClick = "openQuestion"
             />

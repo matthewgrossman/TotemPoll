@@ -73,7 +73,7 @@ public class PieChartView extends View {
         }
 
         // paint circle outline
-        _paint.setColor(Color.BLACK);
+        _paint.setColor(Color.WHITE);
         _paint.setStyle(Paint.Style.STROKE);
         _paint.setStrokeWidth(5);
         canvas.drawArc(rectF, 0, 360, true, _paint);

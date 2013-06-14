@@ -67,7 +67,7 @@ public class ClientResponseActivity extends Activity
         questionView.setText( Html.fromHtml(question.getText()) ) ;
         questionView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        // create answer string list
+        // createpoll answer string list
         String[] answerStrings = new String[_answerList.size()] ;
 
         int i = 0 ;
@@ -95,10 +95,15 @@ public class ClientResponseActivity extends Activity
 
     public void submitResponse( View view )
     {
-        int selectedIndex = _listView.getCheckedItemPosition() ;
-        responses[selectedIndex]++;
-        _listView.setItemChecked(selectedIndex,false);
-        Toast.makeText(this,"You selected: " + _answerList.get(selectedIndex).getText() + "\n" + "Please pass the device", Toast.LENGTH_SHORT).show();
+        int selectedIndex = _listView.getCheckedItemPosition();
+
+        if (selectedIndex > -1) {
+            responses[selectedIndex]++;
+            _listView.setItemChecked(selectedIndex,false);
+            Toast.makeText(this,"Thank you for your submission\n" + "Please pass the device", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this,"Please select an answer.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void showResults(View view){
