@@ -1,3 +1,10 @@
+<!--
+    xml file for Splash Screen
+
+    Android Camp 2013, Graham + 1
+    14th June 2013
+-->
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +15,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
+    <!-- Host Button: Links to Host Home Screen -->
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -16,14 +24,5 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:onClick="goToHostHome"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sample Response Screen"
-            android:id="@+id/button"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:onClick="goToResponseScreen"/>
 
 </RelativeLayout>
