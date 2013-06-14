@@ -14,7 +14,7 @@
     <dimen name = "qs_top_text">30dp</dimen>
 
     <!-- Instruction Text -->
-    <dimen name = "cr_question">18dp</dimen>
+    <dimen name = "cr_question_size">18dp</dimen>
     <dimen name = "cr_instruction">20dp</dimen>
 
     <!-- ListView Separation -->
