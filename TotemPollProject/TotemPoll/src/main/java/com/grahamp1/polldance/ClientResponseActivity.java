@@ -4,12 +4,16 @@ import android.app.Activity ;
 import android.content.Intent;
 import android.os.Bundle ;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter ;
 import android.widget.ListView ;
 import android.widget.TextView ;
+import android.widget.Toast;
 
 import java.util.ArrayList ;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Activity of Client Response Screen
@@ -26,6 +30,8 @@ public class ClientResponseActivity extends Activity
 
     // ListView
     ListView _listView ;
+    int[] responses;
+    Question question;
 
 
     /**
@@ -40,7 +46,7 @@ public class ClientResponseActivity extends Activity
         setContentView( R.layout.activity_client_response ) ;
 
         // load question
-        Question question = (Question) getIntent().getSerializableExtra( "question_object" ) ;
+        question = (Question) getIntent().getSerializableExtra( "question_object" ) ;
         loadQuestion( question ) ;
     }
 
@@ -67,7 +73,7 @@ public class ClientResponseActivity extends Activity
             answerStrings[i] = a.getText() ;
             i ++ ;
         }
-
+        responses = new int[_answerList.size()];
 
         // load the answers to the ListView
         _adapter = new ArrayAdapter<String>( this , android.R.layout.simple_list_item_single_choice , answerStrings ) ;
@@ -86,13 +92,20 @@ public class ClientResponseActivity extends Activity
 
     public void submitResponse( View view )
     {
-        int selectedIndex = _listView.getSelectedItemPosition() ;
+        int selectedIndex = _listView.getCheckedItemPosition() ;
+        responses[selectedIndex]++;
+        _listView.setItemChecked(selectedIndex,false);
+        Toast.makeText(this,"You selected: " + _answerList.get(selectedIndex).getText() + "\n" + "Please pass the device", Toast.LENGTH_SHORT).show();
+    }
 
-        if( selectedIndex > -1 )
-        {
-            //Intent intent = new Intent( this ,   ) ;
-            //intent.addExtra( "answer_object" , _answerList.get(selectedIndex) ) ;
-            //startActivity( intent ) ;
-        }
+    public void showResults(View view){
+
+        Intent intent = new Intent(this,ResultsActivity.class);
+        intent.putExtra("answer_list", _answerList);
+        intent.putExtra("scores_list", responses);
+        intent.putExtra("question_name", question.getText());
+
+        startActivity(intent);
+
     }
 }
