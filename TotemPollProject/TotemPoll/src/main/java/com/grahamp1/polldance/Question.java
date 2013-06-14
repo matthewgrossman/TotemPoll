@@ -25,20 +25,6 @@ public class Question implements Serializable
         return answers;
     }
 
-    public String[] getAnswerList()
-    {
-        String[] tmp = new String[answers.size()] ;
-
-        int i = 0 ;
-        for( Answer ans : answers )
-        {
-            tmp[i] = ans.getText() ;
-            i ++ ;
-        }
-
-        return tmp ;
-    }
-
 
     public void setText(String text)
     {

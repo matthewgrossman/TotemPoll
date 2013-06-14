@@ -96,6 +96,8 @@
             android:layout_height = "wrap_content"
 
             android:layout_marginBottom = "@dimen/border_size"
+
+            android:onClick = "submitResponse"
             />
 
 </LinearLayout>
