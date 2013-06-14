@@ -18,16 +18,16 @@
         </activity>
 
 
-        <activity android:label="Your loaded questions..." android:name="com.grahamp1.polldance.HostLoadActivity">
-        </activity>
-
-
         <activity android:label="PollDance: Poll Results" android:name="com.grahamp1.polldance.ResultsActivity">
         </activity>
 
 
         <!-- Testing client Response -->
         <activity android:label="@string/client_response_title" android:name="com.grahamp1.polldance.ClientResponseActivity">
+        </activity>
+
+        <!-- Linking Host Home to Question Select Screen -->
+        <activity android:label="@string/question_selection_title" android:name="com.grahamp1.polldance.QuestionSelectionActivity">
         </activity>
 
     </application>
