@@ -12,22 +12,33 @@
             android:text="Question"
             android:id="@+id/results_question_text"
             android:layout_gravity="left|center_vertical"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
-    <FrameLayout
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:layout_gravity="center"
-            android:id="@+id/pie_chart_pane">
-    </FrameLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
-    <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="50"
-            android:id="@+id/results_answer_list"
-            android:layout_gravity="center"/>
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:layout_gravity="center"
+                android:id="@+id/pie_chart_pane">
+        </FrameLayout>
+
+        <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:id="@+id/results_answer_list"
+                android:layout_gravity="center"/>
+
+    </LinearLayout>
+
 
     <Button
             android:layout_width="wrap_content"

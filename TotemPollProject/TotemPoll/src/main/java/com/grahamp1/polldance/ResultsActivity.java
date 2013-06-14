@@ -40,6 +40,7 @@ public class ResultsActivity extends Activity {
         _listView = (ListView) findViewById(R.id.results_answer_list);
         _listView.setAdapter(_adapter);
 
+        //~~~~just for testing it out~~~~~~
         ArrayList<Answer> answers = new ArrayList<Answer>();
         answers.add(new Answer("1806", false));
         answers.add(new Answer("1776", true));
@@ -50,8 +51,18 @@ public class ResultsActivity extends Activity {
         votes.add(2);
         votes.add(5);
         votes.add(1);
+        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+//        // get data from ClientResponseActivity
+//        Bundle extras = getIntent().getExtras();
+//        ArrayList<Answer> answers = (ArrayList<Answer>) extras.get("answer_list");
+//        ArrayList<Integer> votes = (ArrayList<Integer>) extras.get("scores_list");
+//        String questionName = (String) extras.get("question_name");
+//        Question q = new Question(questionName, answers);
+
+        // make pie chart; add it to the pie_chart_pane
         _pieChart = new PieChartView(this, answers, votes);
+//        FrameLayout pane = (FrameLayout) findViewById(R.id.pie_chart_pane);
         pane.addView(_pieChart);
 
         setQuestion(q);

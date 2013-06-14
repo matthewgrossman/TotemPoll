@@ -8,6 +8,8 @@ import android.graphics.RectF;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -99,6 +101,14 @@ public class PieChartView extends View {
         for (Integer n : _votes)
             count += n;
         return count;
+    }
+
+    private ArrayList<Integer> getSortedVotesList() {
+        ArrayList<Integer> votesCopy = new ArrayList<Integer>();
+        for (Integer i : _votes)
+            votesCopy.add(0);
+        Collections.copy(votesCopy, _votes);
+        return votesCopy;
     }
 
 }
