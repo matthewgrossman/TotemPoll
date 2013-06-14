@@ -4,6 +4,8 @@ import android.app.Activity ;
 import android.content.Intent;
 import android.os.Bundle ;
 
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter ;
@@ -62,7 +64,8 @@ public class ClientResponseActivity extends Activity
 
         // add the question to the screen
         TextView questionView = (TextView) findViewById( R.id.cr_question ) ;
-        questionView.setText( question.getText() ) ;
+        questionView.setText( Html.fromHtml(question.getText()) ) ;
+        questionView.setMovementMethod(LinkMovementMethod.getInstance());
 
         // create answer string list
         String[] answerStrings = new String[_answerList.size()] ;

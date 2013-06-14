@@ -84,20 +84,33 @@
 
 
     <!-- Submit Button -->
-    <Button
-            android:id = "@+id/cr_submit"
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-            android:text = "@string/submit"
-            android:textSize = "@dimen/button_text_size"
+        <Button
+                android:id = "@+id/cr_submit"
 
-            android:layout_gravity = "center"
+                android:text = "@string/submit"
+                android:textSize = "@dimen/button_text_size"
 
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
+                android:layout_width = "wrap_content"
+                android:layout_height = "fill_parent"
 
-            android:layout_marginBottom = "@dimen/border_size"
+                android:layout_marginBottom = "@dimen/border_size"
 
-            android:onClick = "submitResponse"
-            />
+                android:onClick = "submitResponse"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textStyle="bold"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Results"
+                android:id="@+id/button"
+                android:layout_gravity="right|top"
+                android:onClick="showResults"/>
+    </FrameLayout>
 
 </LinearLayout>

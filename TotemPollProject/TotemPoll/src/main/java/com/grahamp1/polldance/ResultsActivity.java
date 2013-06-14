@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,36 +41,29 @@ public class ResultsActivity extends Activity {
         _listView = (ListView) findViewById(R.id.results_answer_list);
         _listView.setAdapter(_adapter);
 
-        //~~~~just for testing it out~~~~~~
-        ArrayList<Answer> answers = new ArrayList<Answer>();
-        answers.add(new Answer("1806", false));
-        answers.add(new Answer("1776", true));
-        answers.add(new Answer("2002", false));
-        Question q = new Question("In what year was the Declaration of Independence signed?", answers);
-        FrameLayout pane = (FrameLayout) findViewById(R.id.pie_chart_pane);
-        ArrayList<Integer> votes = new ArrayList<Integer>();
-        votes.add(2);
-        votes.add(5);
-        votes.add(1);
-        //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // get data from ClientResponseActivity
+        Bundle extras = getIntent().getExtras();
+        ArrayList<Answer> answers = (ArrayList<Answer>) extras.get("answer_list");
+        int[] votes = (int[]) extras.get("scores_list");
+        String questionName = (String) extras.get("question_name");
+        Question q = new Question(questionName, answers);
 
-//        // get data from ClientResponseActivity
-//        Bundle extras = getIntent().getExtras();
-//        ArrayList<Answer> answers = (ArrayList<Answer>) extras.get("answer_list");
-//        ArrayList<Integer> votes = (ArrayList<Integer>) extras.get("scores_list");
-//        String questionName = (String) extras.get("question_name");
-//        Question q = new Question(questionName, answers);
+        // convert votes array to a list
+        ArrayList<Integer> votesList = new ArrayList<Integer>();
+        for (int n : votes)
+            votesList.add(n);
 
         // make pie chart; add it to the pie_chart_pane
-        _pieChart = new PieChartView(this, answers, votes);
-//        FrameLayout pane = (FrameLayout) findViewById(R.id.pie_chart_pane);
+        _pieChart = new PieChartView(this, answers, votesList);
+        FrameLayout pane = (FrameLayout) findViewById(R.id.pie_chart_pane);
         pane.addView(_pieChart);
 
         setQuestion(q);
     }
 
     public void setQuestion(Question question) {
-        ((TextView) findViewById(R.id.results_question_text)).setText(question.getText());
+        ((TextView) findViewById(R.id.results_question_text))
+                .setText(Html.fromHtml(question.getText()));
 
         List<Answer> answers = question.getAnswers();
 

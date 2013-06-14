@@ -36,10 +36,21 @@ public class CreatePollActivity extends Activity {
         findViewById(R.id.share_poll_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(CreatePollActivity.this, ClientResponseActivity.class);
+
+                // get question and answer text from form
                 String questionHtml = Html.toHtml(
                         ((EditText) findViewById(R.id.create_question_text)).getText()
                 );
-                startActivity(new Intent(CreatePollActivity.this, ResultsActivity.class));
+                ArrayList<Answer> answers = new ArrayList<Answer>();
+                for (String s : _listItems)
+                    answers.add(new Answer(s, false));
+                Question q = new Question(questionHtml, answers);
+
+                // pass data to ClientResponseActivity
+                intent.putExtra( "question_object" , q ) ;
+                startActivity( intent ) ;
+
             }
         });
 

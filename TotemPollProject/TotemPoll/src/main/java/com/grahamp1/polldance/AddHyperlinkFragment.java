@@ -31,28 +31,7 @@ public class AddHyperlinkFragment extends DialogFragment {
                 .setPositiveButton("Save",
                         new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-//                                invalidMessage.setVisibility(View.GONE);
-//
-//                                String linkText = ((EditText) view.findViewById(R.id.link_text))
-//                                        .getText().toString().trim();
-//                                String url = ((EditText) view.findViewById(R.id.link_url))
-//                                        .getText().toString().trim();
-//
-//                                // if URL is valid, create hyperlink
-//                                if (URLUtil.isValidUrl(url)) {
-//                                    EditText questionText = (EditText) AddHyperlinkFragment.this
-//                                            .getActivity().findViewById(R.id.create_question_text);
-//                                    questionText.append(Html.fromHtml("<a href=\"" + url + "\">"
-//                                            + linkText + "</a>")
-//                                    );
-//                                    questionText.append(" ");
-//                                    questionText.setMovementMethod(LinkMovementMethod.getInstance());
-//                                    dialogInterface.cancel();
-//                                } else {
-//                                    invalidMessage.setVisibility(View.VISIBLE);
-//                                }
-                            }
+                            public void onClick(DialogInterface dialogInterface, int i) {}
                         }
                 )
                 .setNegativeButton("Cancel",
@@ -80,15 +59,28 @@ public class AddHyperlinkFragment extends DialogFragment {
                 else {
                     invalidMessage.setVisibility(View.GONE);
 
+                    // if they didn't enter "link text", just use the URL
                     if (linkText.equals(""))
                         linkText = url;
 
                     EditText questionText = (EditText) AddHyperlinkFragment.this
                             .getActivity().findViewById(R.id.create_question_text);
+
+                    // courtesy space before the link
+                    if (questionText.getText().toString()
+                            .charAt(questionText.getText().length() - 1) != ' '){
+                        questionText.append(" ");
+                    }
+
+                    // add the link
                     questionText.append(Html.fromHtml("<a href=\"" + url + "\">"
                             + linkText + "</a>")
                     );
+
+                    // courtesy space after the link
                     questionText.append(" ");
+
+                    // make it active
                     questionText.setMovementMethod(LinkMovementMethod.getInstance());
                     dismiss();
                 }
