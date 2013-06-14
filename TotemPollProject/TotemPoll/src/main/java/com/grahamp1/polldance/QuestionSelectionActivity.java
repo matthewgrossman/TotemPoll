@@ -1,8 +1,10 @@
 package com.grahamp1.polldance ;
 
 import android.app.Activity ;
+import android.content.Intent;
 import android.os.Bundle ;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,11 +24,9 @@ public class QuestionSelectionActivity extends Activity
     private static final int QUESTIONS_XML = R.raw.questions ;
     private static final String NEWLINE = "\n" ;
 
-    private ArrayAdapter<String> _adapter ;
-
     private ArrayList<Question> _questions ;
 
-    private int _selected ;
+    private ListView _listView ;
 
     @Override
     protected void onCreate( Bundle savedInstanceState )
@@ -41,7 +41,6 @@ public class QuestionSelectionActivity extends Activity
         // DISPLAY
         // array of questions for display
         String[] questionsList = new String[_questions.size()] ;
-        Log.wtf("a", String.valueOf(_questions.size()));
 
         int i = 0 ;
         for( Question q : _questions )
@@ -52,15 +51,33 @@ public class QuestionSelectionActivity extends Activity
 
         // load questions to ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<String>( this , android.R.layout.simple_list_item_single_choice , questionsList ) ;
-        ListView listView = (ListView) findViewById( R.id.qs_listView ) ;
-        listView.setAdapter( adapter ) ;
+        _listView = (ListView) findViewById( R.id.qs_listView ) ;
+        _listView.setAdapter( adapter ) ;
 
         // response when an item is selected
-        listView.setClickable( true ) ;
-        listView.setChoiceMode( ListView.CHOICE_MODE_SINGLE ) ;
-        _selected = listView.getSelectedItemPosition() ;
+        _listView.setClickable( true ) ;
+        _listView.setChoiceMode( ListView.CHOICE_MODE_SINGLE ) ;
     }
 
+
+    /* --- Question Selected ----------------------------------------------------------------------------------------- */
+
+    /**
+     * Opens the selected question for client response.
+     *
+     * @param view
+     */
+    public void openQuestion( View view )
+    {
+        int selected = _listView.getCheckedItemPosition();
+        Intent intent = new Intent( this , ClientResponseActivity.class ) ;
+        intent.putExtra( "question_object" , _questions.get(selected) ) ;
+
+        startActivity( intent ) ;
+    }
+
+
+    /* --- XML PARSING ----------------------------------------------------------------------------------------------- */
 
     private ArrayList<Question> importXmlQuestions( int resource )
     {
@@ -73,7 +90,6 @@ public class QuestionSelectionActivity extends Activity
         }
         catch (Exception e)
         {}
-        Log.wtf("a", String.valueOf(ret.size()));
         return ret ;
     }
 

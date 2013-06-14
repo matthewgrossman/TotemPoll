@@ -1,8 +1,10 @@
 package com.grahamp1.polldance ;
 
 import android.app.Activity ;
+import android.content.Intent;
 import android.os.Bundle ;
 
+import android.view.View;
 import android.widget.ArrayAdapter ;
 import android.widget.ListView ;
 import android.widget.TextView ;
@@ -20,10 +22,10 @@ public class ClientResponseActivity extends Activity
     private ArrayAdapter<String> _adapter ;
 
     // List of possible answers
-    private String[] _answerList ;
+    private ArrayList<Answer> _answerList ;
 
-    // Selected answer
-    private int _selected ;
+    // ListView
+    ListView _listView ;
 
 
     /**
@@ -50,35 +52,47 @@ public class ClientResponseActivity extends Activity
      */
     protected void loadQuestion( Question question )
     {
-        _answerList = question.getAnswerList() ;
-        _selected = -1 ;
+        _answerList = question.getAnswers() ;
 
         // add the question to the screen
         TextView questionView = (TextView) findViewById( R.id.cr_question ) ;
         questionView.setText( question.getText() ) ;
 
+        // create answer string list
+        String[] answerStrings = new String[_answerList.size()] ;
+
+        int i = 0 ;
+        for( Answer a : _answerList )
+        {
+            answerStrings[i] = a.getText() ;
+            i ++ ;
+        }
+
 
         // load the answers to the ListView
-        _adapter = new ArrayAdapter<String>( this , android.R.layout.simple_list_item_single_choice , _answerList ) ;
+        _adapter = new ArrayAdapter<String>( this , android.R.layout.simple_list_item_single_choice , answerStrings ) ;
 
-        final ListView listView = (ListView) findViewById( R.id.cr_list ) ;
-        listView.setAdapter( _adapter ) ;
+        _listView = (ListView) findViewById( R.id.cr_list ) ;
+        _listView.setAdapter( _adapter ) ;
 
 
         // response when an item is clicked
-        listView.setClickable(true) ;
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE) ;
-        _selected = listView.getSelectedItemPosition() ;
+        _listView.setClickable(true) ;
+        _listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE) ;
     }
 
 
-    /**
-     * Returns the selected answer.
-     *
-     * @return The selected answer.
-     */
-    public int getSelectedAnswer()
+    /* --- Submitting Response --------------------------------------------------------------------------------- */
+
+    public void submitResponse( View view )
     {
-        return _selected ;
+        int selectedIndex = _listView.getSelectedItemPosition() ;
+
+        if( selectedIndex > -1 )
+        {
+            //Intent intent = new Intent( this ,   ) ;
+            //intent.addExtra( "answer_object" , _answerList.get(selectedIndex) ) ;
+            //startActivity( intent ) ;
+        }
     }
 }
