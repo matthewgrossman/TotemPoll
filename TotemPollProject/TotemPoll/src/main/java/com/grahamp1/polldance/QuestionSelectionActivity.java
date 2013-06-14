@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class QuestionSelectionActivity extends Activity
 {
     private static final int QUESTIONS_XML = R.raw.questions ;
-    private static final String NEWLINE = System.getProperty( "NEWLINE" ) ;
+    private static final String NEWLINE = "\n" ;
 
     private ArrayAdapter<String> _adapter ;
 
@@ -73,7 +73,7 @@ public class QuestionSelectionActivity extends Activity
         }
         catch (Exception e)
         {}
-
+        Log.wtf("a", String.valueOf(ret.size()));
         return ret ;
     }
 
