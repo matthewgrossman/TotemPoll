@@ -35,12 +35,6 @@
 
 
         <activity
-                android:name=".HostLoadActivity"
-                android:label = "Your loaded questions..." >
-        </activity>
-
-
-        <activity
                 android:name=".ResultsActivity"
                 android:label="PollDance: Poll Results">
         </activity>
@@ -50,6 +44,12 @@
         <activity
                 android:name = ".ClientResponseActivity"
                 android:label = "@string/client_response_title" >
+        </activity>
+
+        <!-- Linking Host Home to Question Select Screen -->
+        <activity
+                android:name = ".QuestionSelectionActivity"
+                android:label = "@string/question_selection_title">
         </activity>
 
     </application>

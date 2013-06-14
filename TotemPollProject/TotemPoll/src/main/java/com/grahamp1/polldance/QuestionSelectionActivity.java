@@ -2,6 +2,9 @@ package com.grahamp1.polldance ;
 
 import android.app.Activity ;
 import android.os.Bundle ;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,8 +22,11 @@ public class QuestionSelectionActivity extends Activity
     private static final int QUESTIONS_XML = R.raw.questions ;
     private static final String NEWLINE = System.getProperty( "NEWLINE" ) ;
 
+    private ArrayAdapter<String> _adapter ;
+
     private ArrayList<Question> _questions ;
 
+    private int _selected ;
 
     @Override
     protected void onCreate( Bundle savedInstanceState )
@@ -31,7 +37,28 @@ public class QuestionSelectionActivity extends Activity
         // parse xml
         _questions = importXmlQuestions( QUESTIONS_XML ) ;
 
-        // display
+
+        // DISPLAY
+        // array of questions for display
+        String[] questionsList = new String[_questions.size()] ;
+        Log.wtf("a", String.valueOf(_questions.size()));
+
+        int i = 0 ;
+        for( Question q : _questions )
+        {
+            questionsList[i] = q.getText() ;
+            i ++ ;
+        }
+
+        // load questions to ListView
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>( this , android.R.layout.simple_list_item_single_choice , questionsList ) ;
+        ListView listView = (ListView) findViewById( R.id.qs_listView ) ;
+        listView.setAdapter( adapter ) ;
+
+        // response when an item is selected
+        listView.setClickable( true ) ;
+        listView.setChoiceMode( ListView.CHOICE_MODE_SINGLE ) ;
+        _selected = listView.getSelectedItemPosition() ;
     }
 
 
