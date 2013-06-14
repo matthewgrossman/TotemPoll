@@ -1,4 +1,12 @@
+<!--
+    Constants for dimensions used in this application
+
+    Google Android Camp 2013, Graham + 1
+    14th June 2013
+-->
+
 <resources>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

@@ -1,31 +1,47 @@
-package com.grahamp1.polldance;
+package com.grahamp1.polldance ;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.app.Activity ;
+import android.content.Intent ;
+import android.os.Bundle ;
 
-import java.util.ArrayList;
+import android.text.Html ;
+import android.text.method.LinkMovementMethod ;
+
+import android.view.View ;
+
+import android.widget.AdapterView ;
+import android.widget.ArrayAdapter ;
+import android.widget.EditText ;
+import android.widget.ListView ;
+
+import java.util.ArrayList ;
+
 
 /**
- * Created by demouser on 6/12/13.
+ * Activity for Creating a Poll
+ *
+ * @author Google Android Camp 2013, Graham + 1
+ * @version 14th June 2013
  */
-public class CreatePollActivity extends Activity {
+public class CreatePollActivity extends Activity
+{
+    private ArrayList<String> _listItems = new ArrayList<String>();
+    private ArrayAdapter<String> _adapter;
 
-    ArrayList<String> _listItems = new ArrayList<String>();
-    ArrayAdapter<String> _adapter;
 
+    /**
+     * Instantiates the screen for creating a poll.
+     *
+     * @param savedInstanceState The previous saved state of this activity.
+     */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_poll);
 
+
+        // Set click listeners to the 3 buttons
         findViewById(R.id.create_answer_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +77,8 @@ public class CreatePollActivity extends Activity {
             }
         });
 
+
+        // Set up ListView for the creation of answers.
         _adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, _listItems);
         final ListView lv = (ListView) findViewById(R.id.create_answer_list);
         lv.setAdapter(_adapter);
@@ -75,21 +93,38 @@ public class CreatePollActivity extends Activity {
             }
         });
 
+
+        // Question EditText
         EditText questionText = ((EditText) findViewById(R.id.create_question_text));
         questionText.setMovementMethod(LinkMovementMethod.getInstance());
-
     }
 
-    public void createNewAnswer(String answerText) {
-        if (!answerText.trim().equals("")) {
+
+    /**
+     * Creates a new answer for the question using the specified text and adds it to the list of answers.
+     *
+     * @param answerText The text for the new answer.
+     */
+    public void createNewAnswer(String answerText)
+    {
+        // only adds the answer to the list of answers if there are non-whitespace text entered.
+        if (!answerText.trim().equals(""))
+        {
             _listItems.add(answerText);
             _adapter.notifyDataSetChanged();
         }
     }
 
-    public void editAnswerText(int i, String newAnswerText) {
+
+    /**
+     * Edits the text for an answer already added to the list of answers.
+     *
+     * @param i The index of the answer to be edited.
+     * @param newAnswerText The new text of the specified answer.
+     */
+    public void editAnswerText(int i, String newAnswerText)
+    {
         _listItems.set(i, newAnswerText);
         _adapter.notifyDataSetChanged();
     }
-
 }

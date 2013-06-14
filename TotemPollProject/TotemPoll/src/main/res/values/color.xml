@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Constants for the colours used in this application
+
+    Google Android Camp 2013, Graham + 1
+    14th June 2013
+-->
+
 <resources>
 
     <!-- TextView Colours -->

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Display for the Host Home activity
+
+    Google Android Camp 2013, Graham + 1
+    14th June 2013
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <!-- Button for creating a new poll/question -->
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -13,6 +21,7 @@
             android:layout_gravity="center"
             android:onClick="goToCreatePoll"/>
 
+    <!-- Button for loading polls/questions from a .xml file -->
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -20,4 +29,5 @@
             android:id="@+id/load_poll_button"
             android:layout_gravity="center"
             android:onClick="goToLoadPoll"/>
+
 </LinearLayout>

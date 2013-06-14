@@ -11,7 +11,7 @@ import java.util.ArrayList ;
 /**
  * Activity for the Splash Screen
  *
- * @author Android Camp 2013, Graham + 1
+ * @author Google Android Camp 2013, Graham + 1
  * @version 14th June 2013
  */
 public class MainActivity extends Activity
