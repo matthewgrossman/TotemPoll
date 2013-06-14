@@ -1,6 +1,5 @@
 package com.grahamp1.polldance;
 
-import android.util.Log;
 import android.util.Xml;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -10,11 +9,32 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 
-public class XMLParser {
+
+/**
+ * Parses a well-formed and exact .xml file.
+ *
+ * @author Google Android Camp 2013, Graham + 1
+ * @version 14th June 2013
+ */
+public class XMLParser
+{
+    // Tag that wraps around all the answers in the .xml file.
     public static String TAG = "XMLParser";
 
-    public ArrayList <Question> getQuestions(String text) throws XmlPullParserException, IOException {
 
+    /**
+     * Parses a {@code String} of text and returns the questions and their respective answers, in an {@code ArrayList}
+     * of {@code Question} objects.
+     *
+     * @param text The text to be parsed.
+     *
+     * @return The questions and their respective answers, in an {@code Arraylist} of {@code Question} objects.
+     *
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
+    public ArrayList<Question> getQuestions(String text) throws XmlPullParserException, IOException
+    {
         ArrayList <Question> questions = new ArrayList<Question>();
         ArrayList <Answer> tempAnswers = new ArrayList<Answer>();
         String tempQuestionText = " ";
@@ -41,19 +61,7 @@ public class XMLParser {
             }
         }
         catch(Exception e){}//we are using an exception as a 'break', lel
+
         return questions;
     }
-
-    public static void printQuestions(ArrayList <Question> questions){
-        for(Question q : questions){
-            Log.wtf(TAG, q.getText());
-            printAnswers(q.getAnswers());
-        }
-    }
-    public static void printAnswers(ArrayList <Answer> answers){
-        for(Answer a : answers){
-            Log.wtf(TAG, "Text: " + a.getText() + ", isCorrect: " + a.getIsCorrect());
-        }
-    }
-
 }
