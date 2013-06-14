@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" >PollDance</string>
+    <string name = "action_settings" >Settings</string>
+
+    <!-- Title of each screen : Where applicable -->
+    <string name = "create_poll_title" >PollDance: Create Poll</string>
+    <string name = "client_response_title" >PollDance: Client Response</string>
+    <string name = "question_selection_title" >PollDance: Question Selection</string>
+
+    <!-- Buttons -->
+    <string name = "submit" >Submit</string>
+
+    <!-- Serialisable Object Passed between Activities -->
+    <string name = "question_object" >QuestionObject</string>
+
+</resources>

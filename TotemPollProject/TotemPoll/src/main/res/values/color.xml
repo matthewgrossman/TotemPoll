@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Button Colours -->
+    <color name = "listView_default">#ddffb1</color>
+    <color name = "listView_pressed">#aef1ff</color>
+
+</resources>

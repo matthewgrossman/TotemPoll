@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/listView_default" android:state_activated="false"/>
+    <item android:drawable="@color/listView_default" android:state_activated="false" android:state_pressed="false"/>
+    <item android:drawable="@color/listView_pressed" android:state_pressed="true"/>
+    <item android:drawable="@color/listView_default" android:state_activated="true"/>
+
+
+    <!--item android:state_activated = "true" android:drawable = "@color/listView_pressed" />
+
+    <item android:state_selected = "true" android:drawable = "@color/listView_pressed" />
+    <item android:state_selected = "false" android:drawable = "@color/listView_default" /-->
+
+</selector>
