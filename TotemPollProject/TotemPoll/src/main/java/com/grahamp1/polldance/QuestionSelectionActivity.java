@@ -1,7 +1,7 @@
-package com.grahamp1.polldance;
+package com.grahamp1.polldance ;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.app.Activity ;
+import android.os.Bundle ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class QuestionSelectionActivity extends Activity
 
     private ArrayList<Question> _questions ;
 
-    
+
     @Override
     protected void onCreate( Bundle savedInstanceState )
     {
@@ -29,20 +29,20 @@ public class QuestionSelectionActivity extends Activity
         setContentView( R.layout.activity_question_selection ) ;
 
         // parse xml
-        _questions = importXmlQuestions() ;
+        _questions = importXmlQuestions( QUESTIONS_XML ) ;
 
         // display
     }
 
 
-    private ArrayList<Question> importXmlQuestions()
+    private ArrayList<Question> importXmlQuestions( int resource )
     {
         XMLParser parser = new XMLParser();
         ArrayList<Question> ret = new ArrayList<Question>();
 
         try
         {
-            ret = parser.getQuestions(getXmlString());
+            ret = parser.getQuestions(getXmlString(resource));
         }
         catch (Exception e)
         {}
@@ -50,9 +50,9 @@ public class QuestionSelectionActivity extends Activity
         return ret ;
     }
 
-    private String getXmlString()
+    private String getXmlString( int resource )
     {
-        InputStream stream = getResources().openRawResource(QUESTIONS_XML) ;
+        InputStream stream = getResources().openRawResource(resource) ;
         InputStreamReader streamReader = new InputStreamReader(stream) ;
         BufferedReader buffRead = new BufferedReader(streamReader);
 

@@ -1,13 +1,14 @@
 package com.grahamp1.polldance;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -17,13 +18,24 @@ public class MainActivity extends Activity {
 
     }
 
-    public void goToHostHome(View view) {
+    public void goToHostHome(View view)
+    {
         startActivity(new Intent(this, HostHomeActivity.class));
     }
 
     public void goToResponseScreen(View view)
     {
-        // TEST
+        // create and start intent
+        Intent intent = new Intent( this , ClientResponseActivity.class ) ;
+        intent.putExtra( "question_object" , generateTestQuestion() ) ;
+
+        startActivity( intent ) ;
+    }
+
+
+    // TEST QUESTION
+    private Question generateTestQuestion()
+    {
         ArrayList<Answer> tmpList = new ArrayList<Answer>() ;
 
         Answer tmp = new Answer( "Answer 0" , true ) ;
@@ -35,12 +47,6 @@ public class MainActivity extends Activity {
             tmpList.add(tmp) ;
         }
 
-        Question tmpQ = new Question( "Test Question" , tmpList ) ;
-
-        // create and start intent
-        Intent intent = new Intent( this , ClientResponseActivity.class ) ;
-        intent.putExtra( "question_object" , tmpQ ) ;
-
-        startActivity( intent ) ;
+        return new Question( "Test Question" , tmpList ) ;
     }
 }

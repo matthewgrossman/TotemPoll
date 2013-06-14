@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name" >PollDance</string>
+    <string name="app_name" >TotemPoll</string>
     <string name = "action_settings" >Settings</string>
 
     <!-- Title of each screen : Where applicable -->
-    <string name = "create_poll_title" >PollDance: Create Poll</string>
-    <string name = "client_response_title" >PollDance: Client Response</string>
-    <string name = "question_selection_title" >PollDance: Question Selection</string>
+    <string name = "create_poll_title" >TotemPoll: Create Poll</string>
+    <string name = "client_response_title" >TotemPoll: Client Response</string>
+    <string name = "question_selection_title" >TotemPoll: Question Selection</string>
 
     <!-- Buttons -->
     <string name = "submit" >Submit</string>
+    <string name = "select" >Select</string>
 
-    <!-- Serialisable Object Passed between Activities -->
-    <string name = "question_object" >QuestionObject</string>
+    <!-- Instructions -->
+    <string name = "question_select" >Please select a question:</string>
+
+    <string name = "cr_question_instru">Question:</string>
+    <string name = "cr_answer_instru">Please select one:</string>
 
 </resources>

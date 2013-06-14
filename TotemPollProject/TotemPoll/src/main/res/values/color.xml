@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- TextView Colours -->
+    <color name = "cr_question">#aef1ff</color>
+
     <!-- Button Colours -->
     <color name = "listView_default">#ddffb1</color>
-    <color name = "listView_pressed">#aef1ff</color>
+    <color name = "listView_selected">#aef1ff</color>
 
 </resources>

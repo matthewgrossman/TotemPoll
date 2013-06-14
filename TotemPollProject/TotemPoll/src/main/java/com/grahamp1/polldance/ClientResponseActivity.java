@@ -1,10 +1,13 @@
-package com.grahamp1.polldance;
+package com.grahamp1.polldance ;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.app.Activity ;
+import android.os.Bundle ;
+
+import android.widget.ArrayAdapter ;
+import android.widget.ListView ;
+import android.widget.TextView ;
+
+import java.util.ArrayList ;
 
 /**
  * Activity of Client Response Screen
