@@ -1,16 +1,24 @@
 package com.grahamp1.polldance;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by demouser on 6/12/13.
@@ -21,8 +29,7 @@ public class ResultsActivity extends Activity {
     private ArrayList<String> _listItems = new ArrayList<String>();
     private ArrayAdapter<String> _adapter;
 
-    // maps answer index to number of votes
-    private HashMap<Integer, Integer> _votes = new HashMap<Integer, Integer>();
+    private PieChartView _pieChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,35 +41,60 @@ public class ResultsActivity extends Activity {
         _listView.setAdapter(_adapter);
 
         ArrayList<Answer> answers = new ArrayList<Answer>();
-        answers.add(new Answer("THIS IS ANSWER ONE", true));
-        answers.add(new Answer("answer twoooo", false));
-        Question q = new Question("This is the question?", answers);
+        answers.add(new Answer("1806", false));
+        answers.add(new Answer("1776", true));
+        answers.add(new Answer("2002", false));
+        Question q = new Question("In what year was the Declaration of Independence signed?", answers);
+        FrameLayout pane = (FrameLayout) findViewById(R.id.pie_chart_pane);
+        ArrayList<Integer> votes = new ArrayList<Integer>();
+        votes.add(2);
+        votes.add(5);
+        votes.add(1);
+
+        _pieChart = new PieChartView(this, answers, votes);
+        pane.addView(_pieChart);
+
         setQuestion(q);
     }
 
     public void setQuestion(Question question) {
         ((TextView) findViewById(R.id.results_question_text)).setText(question.getText());
 
-        for (Answer answer : question.getAnswers()) {
-            _listItems.add(answer.getText());
+        List<Answer> answers = question.getAnswers();
+
+        for (int i = 0; i < answers.size(); i++) {
+            Answer answer = answers.get(i);
+
+            _listItems.add(String.valueOf(_pieChart.getPercentage(i)) + "%\t" + answer.getText());
             _adapter.notifyDataSetChanged();
             if (answer.getIsCorrect()) {
                 _adapter.getView(_listItems.size() - 1, null, _listView)
                         .setBackgroundColor(Color.GREEN);
             }
         }
+        _adapter.notifyDataSetChanged();
 
     }
 
     public void addVote(int index) {
-        if (_votes.containsKey(index))
-            _votes.put(index, _votes.get(index) + 1);
-        else
-            _votes.put(index, 1);
+        _pieChart.addVote(index);
+
+        String[] splitItem = _listItems.get(index).split("\\s+");
+        String newItem = String.valueOf(_pieChart.getPercentage(index)) + "%\t";
+        for (int i = 1; i < splitItem.length; i++)
+            newItem = newItem + splitItem[i];
+
+        _listItems.set(index, newItem);
+        _adapter.notifyDataSetChanged();
     }
 
     public void goToHostHome(View view) {
         startActivity(new Intent(this, HostHomeActivity.class));
+    }
+
+    public void addRandomVote(View view) {
+        addVote((int)(Math.random()*_listItems.size()));
+        _pieChart.postInvalidate();
     }
 
 }
